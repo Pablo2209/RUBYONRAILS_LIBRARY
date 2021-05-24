@@ -3,7 +3,7 @@ class CreateBooks < ActiveRecord::Migration[5.2]
     create_table :books do |t|
       t.string :title
       t.string :author
-      t.boolean :state
+      t.string :state
       t.date :date1
       t.date :date2
 
