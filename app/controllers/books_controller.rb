@@ -3,7 +3,11 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    #Se utiliza el @q para filtrar con ransack
+    @q = Book.ransack(params[:q])
+    @books = @q.result(distinct: true)
+    
+  
   end
 
   # GET /books/1 or /books/1.json
@@ -26,10 +30,10 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: "Book was successfully created." }
-        format.json { render :show, status: :created, location: @book }
+        format.json { render :show, st: :created, location: @book }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+        format.html { render :new, st: :unprocessable_entity }
+        format.json { render json: @book.errors, st: :unprocessable_entity }
       end
     end
   end
@@ -39,10 +43,10 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to @book, notice: "Book was successfully updated." }
-        format.json { render :show, status: :ok, location: @book }
+        format.json { render :show, st: :ok, location: @book }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
+        format.html { render :edit, st: :unprocessable_entity }
+        format.json { render json: @book.errors, st: :unprocessable_entity }
       end
     end
   end
@@ -64,6 +68,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :author, :state, :date1, :date2)
+      params.require(:book).permit(:title, :author, :st, :date1, :date2)
     end
 end

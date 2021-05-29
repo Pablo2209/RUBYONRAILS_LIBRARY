@@ -2,6 +2,13 @@
 
 <h1>Books</h1>
 
+<%= search_form_for @q do |f| %>
+<%= f.label :st, "Status" %> <!--title_or_description_or_author_cont %> -->
+<%= f.select :st, options_for_select(Book.sts,
+@q.st), {},{class: "form-control"}  %>  <!--title_or_description_or_author_cont %> -->
+<%= f.submit %>
+<% end %>
+
 <table class="table" >
   <thead>
     <tr>
@@ -20,7 +27,7 @@
       <tr>
         <td><%= book.title %></td>
         <td><%= book.author %></td>
-        <td><%= book.state %></td>
+        <td><%= book.st %></td>
         <td><%= book.date1 %></td>
         <td><%= book.date2 %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
