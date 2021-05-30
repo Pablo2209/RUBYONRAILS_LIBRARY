@@ -1,29 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Books</h1>
-
+<h1>LIBROS</h1>
+<!--
 <div>
   <%= search_form_for @q do |f| %>
-  <%= f.label :title_cont, "Titulo" %> <!--title_or_description_or_author_cont %> -->
-  <%= f.search_field :title_cont%>  <!--title_or_description_or_author_cont %> -->
+  <%= f.label :title_cont, "Titulo" %> 
+  <%= f.search_field :title_cont%>  
   <%= f.submit %>
   <% end %>
 </div>
+-->
 
-<div>
-  <%= search_form_for @q do |f| %>
-  <%= f.label :st_cont, "Status" %> <!--title_or_description_or_author_cont %> -->
-  <%= f.select :st_cont, options_for_select(Book.sts,
-  @q.st), {},{class: "form-control"}  %>  <!--title_or_description_or_author_cont %> -->
-  <%= f.submit %>
-  <% end %>
+<div >
+    <%= search_form_for @q do |f| %>
+    <%= f.label :st_cont, "Estado" %> <!--title_or_description_or_author_cont %> -->
+    <%= f.select :st_cont, options_for_select(Book.sts,
+    @q.st), {},{class: "form-control"}  %> 
+
+  <%= f.submit "BUSCAR", class:"btn btn-primary" %>
+
+<% end %>
 </div>
 
 
 <table class="table" >
   <thead>
     <tr>
-      <th>Titulo</th>
+      <th><%= sort_link(@q, :title, "Titulo") %></th>
       <th>Autor</th>
       <th>Estado</th>
       <th>Prestado</th>
@@ -37,7 +40,6 @@
     <% @books.each do |book| %>
       <tr>
         <td><%= book.title %></td>
-        
         <td><%= book.author %></td>
         <td><%= book.st %></td>
         <td><%= book.date1 %></td>
