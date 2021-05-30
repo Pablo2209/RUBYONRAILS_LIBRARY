@@ -6,8 +6,6 @@ class BooksController < ApplicationController
     #Se utiliza el @q para filtrar con ransack
     @q = Book.ransack(params[:q])
     @books = @q.result(distinct: true)
-    
-  
   end
 
   # GET /books/1 or /books/1.json

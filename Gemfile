@@ -20,6 +20,8 @@ gem 'sqlite3', '~> 1.4', group: :development
 gem 'pg', group: :production
 #gema para filtrar tablas
 gem 'ransack' 
+#Gema compaginar
+gem 'kaminari'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
